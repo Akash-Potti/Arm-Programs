@@ -1,6 +1,8 @@
 ;Write a program to shift the byte stored in register R2 to 
 ;middle position and exchange the digits.
-
+;USN: 1DA22CS007
+;NAME: AKASH POTTI
+;BATCH: A-1
 	area mycode,code,readonly
 		mov r2,#0x12   
 		lsl r2,r2,#12

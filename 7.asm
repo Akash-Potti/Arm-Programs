@@ -1,7 +1,10 @@
-;program to find the sum of square of digits in the byte data stored in register R1. Store the result in R10.
+;program to find the sum of square of digits in the byte 
+;data stored in register R1. Store the result in R10.
 ;Example: Suppose R1=0x00000045
 ;               After execution R10=4^2+5^2
-
+;USN: 1DA22CS007
+;NAME: AKASH POTTI
+;BATCH: A-1
 	area mycode,code,readonly
 		ldr r1,=0x00000012
 		ldr r2,=0x000000f0

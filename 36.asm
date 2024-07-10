@@ -3,21 +3,25 @@
 ;NAME: AKASH POTTI
 ;BATCH: A-1
 
-	area mydata,data,readonly
-n		equ 10
-	area mydata1,data,readwrite
-fibo	space n*4
-	area mycode,code,readonly
-		ldr r0,=fibo
-		mov r1,#0
-		str r1,[r0],#4
-		mov r2,#2
-l1	ldr r3,[r0,#-8]
-	ldr r4,[r0,#-4]
-	add r1,r3,r4
-	str r1,[r0],#4
-	add r2,r2,#1
-	cmp r2,n
-	blt l1
-stop b stop 	
-		end
+N 	EQU 8
+	area data1, data, readwrite
+FIBO 	SPACE 10
+	area c, code, readonly
+	ldr r0, =FIBO
+	mov r1, #0
+	mov r2, #1
+	mov r3, #N
+	strb r1, [r0], #1
+	strb r2, [r0], #1
+	mov r4, #2
+loop
+	add r5, r1, r2
+	mov r1, r2
+	mov r2, r5
+	strb r5, [r0],#1
+	add r4, #1
+	cmp r4, r3
+	ble loop
+	b stop
+stop b stop
+end

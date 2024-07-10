@@ -1,7 +1,10 @@
-;Write a program to extract lower and higher byte of 32 bit stored in register R1 and multiply these two and store it in register R9.
+;Write a program to extract lower and higher byte of 32 bit 
+;stored in register R1 and multiply these two and store it in register R9.
 ;Example: suppose R1=0x12345678 
 ;                After execution R9 = 12*78
-
+;USN: 1DA22CS007
+;NAME: AKASH POTTI
+;BATCH: A-1
 	area mycode,code,readonly
 		ldr r1,=0x12345678
 		and r2,r1,#0xff

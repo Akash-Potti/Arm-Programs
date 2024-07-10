@@ -3,33 +3,42 @@
 ;USN: 1DA22CS007
 ;NAME: AKASH POTTI
 ;BATCH: A-1
-	area mydata,data,readonly
-a		dcd 0x10,0x12,0x13,0x14,0x31,0x16,0x17,0x18,0x19,0x20
-n		dcd 10
-	area mydata1,data,readwrite
-max		dcd 0
-min 	dcd 255
-	area mycode,code,readonly
-		ldr r0,=a
-		ldr r1,=max
-		ldr r2,=min
-		ldr r3,[r0]
-		ldr r4,[r1]
-		ldr r5,[r2]
-		ldr r6,=n
-		ldr r7,[r6]
-		mov r8,r7
-l1		ldr r9,[r0],#4
-		cmp r9,r1
-		
-		bgt l2
-		mov r10,r9
-l2		
-		mov r1,r9
-		str r4,[r1]
-		str r5,[r2]
-		subs r7,r7,#1
-		bne l1
+N    EQU 10
+    area data1, data, readonly
+X    DCD    1, 5, 7, 2, 19, 10, 7, 223, 0, 8
+
+    
+    area c, code, readonly
+    entry
+start
+    ldr r0, =X
+    ldr r1, =N ; count
+    ldr r4, [r0]    ; r4 = min
+    ldr r5, [r0]    ; r5 = max
+    
+    mov r6, #1
+loop
+    mov r8, r6, lsl #2
+    ldr r7, [r0, r8]
+    cmp r7, r4
+    ble l1
+    cmp r7, r5
+    bgt l2
+    add r6, #1
+    cmp r6, r1
+    blt loop
+    b stop
+l1
+    mov r4, r7
+    add r6, #1
+    cmp r6, r1
+    blt loop
+    b stop
+l2
+    mov r5, r7
+    add r6, #1
+    cmp r6, r1
+    blt loop
+    b stop
 stop b stop
-		end
-	
+    end

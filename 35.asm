@@ -4,26 +4,44 @@
 ;NAME: AKASH POTTI
 ;BATCH: A-1
 
-	area mydata,data,readonly
-x		dcb 5,3,8,2,7
-n		dcb 5
-	area mydata1,data,readwrite
-y		space 5
-	area mycode,code,readonly
-		ldr r0,=x
-		ldr r1,=y
-		
-		mov r2,#n
-l1	ldrb r3,[r0],#1
-	strb r3,[r1],#1
-	subs r2,r2,#1
+	area data1, data, readonly
+X 		DCB 8, 6, 3, 9, 2
+	area data2, data, readwrite
+Y 		SPACE 5
+	area c, code, readonly
+
+
+	ldr r0, =X
+	ldrb r1, [r0], #1
+	ldr`b r2, [r0], #1
+	ldrb r3, [r0], #1
+	ldrb r4, [r0], #1
+	ldrb r5, [r0]
+	mov r7, #5
+l1
+	cmp r1, r2
+	movhi r6, r1
+	movhi r1, r2
+	movhi r2, r6
+	cmp r2, r3
+	movhi r6, r2
+	movhi r2, r3
+	movhi r3, r6
+	cmp r3, r4
+	movhi r6, r3
+	movhi r3, r4
+	movhi r4, r6
+	cmp r4, r5
+	movhi r6, r4
+	movhi r4, r5
+	movhi r5, r6
+	subs r7,r7, #1
 	bne l1
-	
-sort_loop
-	mov r5,#0
-	mov r1,#1
-	mov r2,r1,lsl,#1
-inner_loop
-	cmp r1,r4
-	bgt sort_end
-	ldrb
+	ldr r0, =Y
+	strb r1, [r0], #1
+	strb r2, [r0], #1
+	strb r3, [r0], #1
+	strb r4, [r0], #1
+	strb r5, [r0]
+stop b stop
+		end

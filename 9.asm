@@ -1,8 +1,11 @@
-;program to make a 32 bit data of register R5 using byte data available in register R1, R2, R3 and R4. Assume R1 should be in lower byte position of 
+;program to make a 32 bit data of register R5 using byte data available in 
+;register R1, R2, R3 and R4. Assume R1 should be in lower byte position of 
 ;R5 and R4 should higher byte position of R5. 
 ;Example: suppose R1=0x12 R2=0x13 R3=0x14 R4=0x15
 ;                  After execution R5=0x15131412 or 15141312
-
+;USN: 1DA22CS007
+;NAME: AKASH POTTI
+;BATCH: A-1
 	area mycode,code,readonly
 		mov r1,#0x12
 		mov r2,#0x13
